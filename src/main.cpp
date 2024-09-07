@@ -1,24 +1,54 @@
-#include "window.h"
-#include "game.h"
+#include <SDL2/SDL.h>
+#include "raycaster.h"
+#include "render.h"
+#include "input_handler.h"
+#include "movement.h"
+#include "collision.h" // Include the new collision header
 
-const int SCREEN_WIDTH = 1260;
-const int SCREEN_HEIGHT = 720;
-const char* WINDOW_TITLE = "ColeusMaze";
+int main() {
+    SDL_Window* window;
+    SDL_Renderer* renderer;
 
-int main(int argc, char* argv[]) {
-    SDL_Window* window = nullptr;
-    SDL_Renderer* renderer = nullptr;
-
-    // Init SDL and create a window
-    if (!initSDL(window, renderer, WINDOW_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT)) {
+    // Init SDL
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
         return 1;
     }
 
-    // The Main game loop
-    runGame(window, renderer);
+    // Make window
+    window = SDL_CreateWindow("SDL2 Raycasting Example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
+    if (!window) {
+        fprintf(stderr, "SDL_CreateWindow Error: %s\n", SDL_GetError());
+        SDL_Quit();
+        return 1;
+    }
 
-    // Cleanup
-    closeSDL(window, renderer);
+    // Make renderer
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (!renderer) {
+        SDL_DestroyWindow(window);
+        fprintf(stderr, "SDL_CreateRenderer Error: %s\n", SDL_GetError());
+        SDL_Quit();
+        return 1;
+    }
+
+    // The main loop flag
+    bool quit = false;
+    SDL_Event e;
+
+    // The main application loop
+    while (!quit) {
+        // Handle input
+        handleInput(&e, quit);
+
+        // Render the scene
+        renderScene(renderer);
+    }
+
+    // Clean up
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 
     return 0;
 }
