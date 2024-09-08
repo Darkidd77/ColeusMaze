@@ -1,29 +1,27 @@
-# Compiler and flags
-CXX = g++
-CXXFLAGS = -Wall -Werror -Wextra -pedantic -std=c++17
+CC = g++
+CFLAGS = -Wall -Werror -Wextra -pedantic -std=c++17
+LDFLAGS = -lSDL2
 
-# Directories
 SRC_DIR = src
 INC_DIR = inc
-BUILD_DIR = build
+OBJ_DIR = build
+ASSETS_DIR = assets
 
-# Source files and target executable
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
-TARGET = $(BUILD_DIR)/ColeusMaze
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-# Include directory
-INCLUDES = -I$(INC_DIR)
+EXEC = ColeusMaze
 
-# Build target
-all: $(TARGET)
+all: $(EXEC)
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
+$(EXEC): $(OBJ_FILES)
+	$(CC) $(OBJ_FILES) -o $(EXEC) $(LDFLAGS)
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)  # This will ensure the 'build' directory exists
+	$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 
-# Clean target
 clean:
-	rm -rf $(BUILD_DIR)/*.o $(TARGET)
+	rm -rf $(OBJ_DIR) $(EXEC)
+
+.PHONY: clean

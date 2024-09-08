@@ -1,3 +1,6 @@
+#ifndef GAME_H
+#define GAME_H
+
 const int MAP_WIDTH = 10;
 const int MAP_HEIGHT = 10;
 
@@ -14,3 +17,4 @@ const int map[MAP_HEIGHT][MAP_WIDTH] = {
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 };
+#endif

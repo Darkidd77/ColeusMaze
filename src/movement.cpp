@@ -18,11 +18,11 @@ void movePlayer(char direction) {
         newX -= cos(playerAngle) * moveSpeed;
         newY -= sin(playerAngle) * moveSpeed;
     } else if (direction == 'A') { // Move left (strafe)
-        newX -= cos(playerAngle + PI / 2) * moveSpeed;
-        newY -= sin(playerAngle + PI / 2) * moveSpeed;
+        newX -= cos(playerAngle + Pi / 2) * moveSpeed;
+        newY -= sin(playerAngle + Pi / 2) * moveSpeed;
     } else if (direction == 'D') { // Move right (strafe)
-        newX += cos(playerAngle + PI / 2) * moveSpeed;
-        newY += sin(playerAngle + PI / 2) * moveSpeed;
+        newX += cos(playerAngle + Pi / 2) * moveSpeed;
+        newY += sin(playerAngle + Pi / 2) * moveSpeed;
     }
 
     // Collision with walls

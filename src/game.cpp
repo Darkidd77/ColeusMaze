@@ -1,6 +1,7 @@
 #include "game.h"
 #include "raycaster.h"
 #include "window.h"
+#include "render.h"
 
 void runGame(SDL_Window* window, SDL_Renderer* renderer) {
     bool quit = false;

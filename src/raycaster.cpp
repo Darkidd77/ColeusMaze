@@ -7,7 +7,7 @@ const int mapWidth = 10;
 const int mapHeight = 10;
 const int screenWidth = 1280;
 const int screenHeight = 720;
-const float FOV = 60.0f * (PI / 180.0f); // 60 degrees in radians
+const float FOV = 60.0f * (Pi / 180.0f); // 60 degrees in radians
 
 // Map (1 = wall, 0 = empty space)
 int worldMap[mapHeight][mapWidth] = {
@@ -26,7 +26,7 @@ int worldMap[mapHeight][mapWidth] = {
 // The Player position and orientation
 float playerX = 2.0f;
 float playerY = 2.0f;
-float playerAngle = PI / 2;  // Facing EAST initially
+float playerAngle = Pi / 2;  // Facing EAST initially
 
 // Cast a single ray and determine wall height
 void castRay(SDL_Renderer* renderer, int x) {
