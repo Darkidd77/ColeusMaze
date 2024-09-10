@@ -1,27 +1,8 @@
-CC = g++
-CFLAGS = -Wall -Werror -Wextra -pedantic -std=c++17
-LDFLAGS = -lSDL2
+build:
+	gcc -Wall -Werror -Wextra -pedantic ./src/*.c -lm -o maze `sdl2-config --cflags` `sdl2-config --libs`;
 
-SRC_DIR = src
-INC_DIR = inc
-OBJ_DIR = build
-ASSETS_DIR = assets
-
-SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
-
-EXEC = ColeusMaze
-
-all: $(EXEC)
-
-$(EXEC): $(OBJ_FILES)
-	$(CC) $(OBJ_FILES) -o $(EXEC) $(LDFLAGS)
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@mkdir -p $(OBJ_DIR)  # This will ensure the 'build' directory exists
-	$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+run:
+	./maze;
 
 clean:
-	rm -rf $(OBJ_DIR) $(EXEC)
-
-.PHONY: clean
+	rm maze;
