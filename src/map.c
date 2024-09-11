@@ -1,4 +1,4 @@
-#include "../headers/header.h"
+#include "game.h"
 
 static const int map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6},

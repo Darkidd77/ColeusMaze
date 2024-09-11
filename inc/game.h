@@ -154,5 +154,5 @@ void freeWallTextures(void);
 /* Functions-variables-structs for walls */
 
 void renderWall(void);
-
+void renderFloor(int wallBottomPixel, color_t *texelColor, int x);
 #endif /*GAME_H*/

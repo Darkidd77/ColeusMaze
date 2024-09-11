@@ -924,7 +924,7 @@ upng_error upng_header(upng_t* upng)
 /*read a PNG, the result will be in the same color type as the PNG (hence "generic")*/
 upng_error upng_decode(upng_t* upng)
 {
-	const unsigned char *chunk, *data;
+	const unsigned char *chunk, *data = NULL;
 	unsigned char* compressed;
 	unsigned char* inflated;
 	unsigned long compressed_size = 0, compressed_index = 0;
